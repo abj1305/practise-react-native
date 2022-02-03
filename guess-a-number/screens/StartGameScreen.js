@@ -13,6 +13,9 @@ import Card from "../components/Card";
 import Input from "../components/Input";
 import Colors from "../constants/colors";
 import NumberContainer from "../components/NumberContainer";
+import CustomText from "../components/CustomText"; // This is one option to control fonts (and other styles too) globally
+import DefaultStyles from "../constants/default-styles"; // This is option two to control fonts globally
+import MyButton from "../components/MyButton";
 
 const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -45,12 +48,11 @@ const StartGameScreen = (props) => {
   if (confirmed) {
     confirmedOutput = (
       <Card style={styles.summaryContainer}>
-        <Text>You selected</Text>
+        <Text style={DefaultStyles.bodyText}>You selected</Text>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <Button
-          title="START GAME"
-          onPress={() => props.onGameStart(selectedNumber)}
-        />
+        <MyButton onPress={() => props.onGameStart(selectedNumber)}>
+          START GAME
+        </MyButton>
       </Card>
     );
   }
@@ -64,7 +66,7 @@ const StartGameScreen = (props) => {
       <View style={styles.screen}>
         <Text style={styles.title}>Start a New Game!</Text>
         <Card style={styles.inputContainer}>
-          <Text>Select a Number</Text>
+          <CustomText>Select a Number</CustomText>
           <Input
             style={styles.input}
             blurOnSubmit
@@ -107,6 +109,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginVertical: 10,
+    fontFamily: "open-sans-bold",
   },
   inputContainer: {
     width: 300,
